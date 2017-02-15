@@ -1,10 +1,10 @@
 package com.linjuli.util;
 
 import java.io.Serializable;
-
 /**
- * @author Administrator
  * 用于封装服务器到客户端的json返回值
+ * @author mars3
+ *
  * @param <T>
  */
 public class JsonResult<T> implements Serializable{

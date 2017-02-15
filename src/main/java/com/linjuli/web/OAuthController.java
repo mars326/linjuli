@@ -5,11 +5,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.linjuli.model.weixin.pojo.SNSUserInfo;
 import com.linjuli.model.weixin.pojo.WeixinOauth2Token;
+import com.linjuli.thread.TokenThread;
 import com.linjuli.util.CommonUtil;
 import com.linjuli.util.WeixinUtil;
 
@@ -22,19 +25,19 @@ import com.linjuli.util.WeixinUtil;
  */
 @Controller
 public class OAuthController{
-    private static final long serialVersionUID = -1847238807216447030L;
     
+    private static Logger log = LoggerFactory.getLogger(OAuthController.class);
     @RequestMapping("/OAuth.do")
     public void oauth(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
-
+		  
         // 用户同意授权后，能获取到code
         String code = request.getParameter("code");
         String state = request.getParameter("state");
         
         // 用户同意授权
-        if (!"authdeny".equals(code)) {
+        if (code != null && code != "") {
             // 获取网页授权access_token
             WeixinOauth2Token weixinOauth2Token = WeixinUtil.getOauth2AccessToken(CommonUtil.appID, CommonUtil.appsecret, code);
             // 网页授权接口访问凭证
@@ -48,7 +51,14 @@ public class OAuthController{
             request.setAttribute("snsUserInfo", snsUserInfo);
             request.setAttribute("state", state);
         }
-        // 跳转到welcome.jsp
-        request.getRequestDispatcher("welcome.jsp").forward(request, response);
+        
+        
+        //判断用户是否已注册
+        if(false){
+        	// 跳转到welcome.jsp
+        	request.getRequestDispatcher("welcome.jsp").forward(request, response);
+        	return;
+        }
+        request.getRequestDispatcher("register.html").forward(request, response);
     }
 }

@@ -6,7 +6,7 @@ import java.io.Serializable;
  * @author mars3
  *
  */
-public class Room implements Serializable{
+public class Unit implements Serializable{
 /**
 	 * 
 	 */
@@ -21,20 +21,20 @@ public class Room implements Serializable{
 	private int id;
 	private int cid;
 	private int dong;
-	private int room;
+	private int unit;
 	private String openid;
 	private int addtime;
 	private String content;
-	public Room() {
+	public Unit() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Room(int id, int cid, int dong, int room, String openid, int addtime, String content) {
+	public Unit(int id, int cid, int dong, int room, String openid, int addtime, String content) {
 		super();
 		this.id = id;
 		this.cid = cid;
 		this.dong = dong;
-		this.room = room;
+		this.unit = room;
 		this.openid = openid;
 		this.addtime = addtime;
 		this.content = content;
@@ -58,10 +58,10 @@ public class Room implements Serializable{
 		this.dong = dong;
 	}
 	public int getRoom() {
-		return room;
+		return unit;
 	}
 	public void setRoom(int room) {
-		this.room = room;
+		this.unit = room;
 	}
 	public String getOpenid() {
 		return openid;
@@ -83,7 +83,7 @@ public class Room implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "Room [id=" + id + ", cid=" + cid + ", dong=" + dong + ", room=" + room + ", openid=" + openid
+		return "Room [id=" + id + ", cid=" + cid + ", dong=" + dong + ", room=" + unit + ", openid=" + openid
 				+ ", addtime=" + addtime + ", content=" + content + "]";
 	}
 	

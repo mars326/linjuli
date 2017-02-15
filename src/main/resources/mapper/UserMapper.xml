@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.linjuli.dao.UserDao">
+	 <insert id="createUser" parameterType="com.linjuli.model.web.User" useGeneratedKeys="true" keyProperty="id">
+	 	INSERT
+	 	INTO
+	 		wechat_user
+		 	(
+		 		id
+				,openid
+				,nickname
+				,username
+				,province
+				,city
+				,headimgurl
+				,address
+				,language
+				,addtime
+				,uptime
+				,cid
+				,jifen
+				,dakatime
+				,tel
+				,teltime
+				,dong
+				,unit
+				,room
+				,sex
+				,isset
+				,iscid
+				,guanzhu
+		 	)
+	 	VALUES
+	 		(
+	 			DEFAULT
+	 			,#{openid}
+				,#{nickname}
+				,#{username}
+				,#{province}
+				,#{city}
+				,#{headimgurl}
+				,#{address}
+				,#{language}
+				,#{addtime}
+				,#{uptime}
+				,#{cid}
+				,#{jifen}
+				,#{dakatime}
+				,#{tel}
+				,#{teltime}
+				,#{dong}
+				,#{unit}
+				,#{room}
+				,#{sex}
+				,#{isset}
+				,#{iscid}
+				,#{guanzhu}
+	 		)
+	 </insert>
+</mapper>

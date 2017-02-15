@@ -26,6 +26,7 @@
         <tr><td>特权</td><td><%=user.getPrivilegeList()%></td></tr>
         <tr><td>state:</td><td><%=state%></td></tr>
     </table>
+    <a href="register.html">注册</a>
     <%
         }
         else 

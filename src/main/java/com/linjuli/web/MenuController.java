@@ -74,7 +74,8 @@ public class MenuController {
     	  //Ìø×ªÁ´½Ó
     	  String REDIRECT_URI = CommonUtil.urlEncodeUTF8("https://linjuli.applinzi.com/OAuth.do");
     	  //System.out.println(REDIRECT_URI);
-    	  btn11.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=appid&redirect_uri="+REDIRECT_URI+"&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect");
+    	  //scope=snsapi_base¾²Ä¬ÊÚÈ¨ snsapi_userinfoÍøÒ³ÊÚÈ¨
+    	  btn11.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+CommonUtil.appID+"&redirect_uri="+REDIRECT_URI+"&response_type=code&scope=snsapi_base&state=1#wechat_redirect");
     	  //System.out.println("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+ConnectUtil.appID+"&redirect_uri="+REDIRECT_URI+"&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect");
     	  
 		  CommonButton btn00 = new CommonButton();

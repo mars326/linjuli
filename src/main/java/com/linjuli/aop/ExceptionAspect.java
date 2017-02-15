@@ -3,13 +3,21 @@ package com.linjuli.aop;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import com.linjuli.util.CommonUtil;
 import com.linjuli.util.JsonResult;
 
+/**
+ * @author mars3
+ * 处理异常
+ */
 @Component
 @Aspect
 public class ExceptionAspect {
+
 	@Around("within (com.linjuli.web.*Controller)")
 	public Object process(ProceedingJoinPoint target){
 		try{
@@ -19,7 +27,7 @@ public class ExceptionAspect {
 			//System.out.println("结束");
 			return obj;
 		}catch(Throwable e){
-			//System.out.println("有异常");
+			System.out.println("有异常");
 			e.printStackTrace();
 			return new JsonResult(e);
 		}

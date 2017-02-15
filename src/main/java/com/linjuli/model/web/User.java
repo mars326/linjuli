@@ -11,7 +11,7 @@ public class User implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -4415938915475693888L;
-	//	id          int(10)       ID                     
+//	id          int(10)       ID                     
 //	openid      char(55)      openid                 
 //	nickname    varchar(60)   微信网名           
 //	username    varchar(60)   真实姓名           
@@ -28,8 +28,8 @@ public class User implements Serializable{
 //	tel         varchar(50)   手机号              
 //	teltime     int(15)       手机验证时间     
 //	dong        int(15)       栋                    
-//	room        int(15)       单元                 
-//	unit        int(15)       房间号              
+//	unit        int(15)       单元                 
+//	room        int(15)       房间号              
 //	sex         tinyint(4)    性别                 
 //	isset       tinyint(4)    是否是授权过的  
 //	iscid       tinyint(4)    社区物管,1是      
@@ -51,8 +51,8 @@ public class User implements Serializable{
 	private String tel;
 	private int teltime;
 	private int dong;
-	private int room;
 	private int unit;
+	private int room;
 	private int sex;
 	private int isset;
 	private int iscid;
