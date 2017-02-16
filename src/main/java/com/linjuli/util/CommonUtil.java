@@ -11,6 +11,8 @@ import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 
 import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
@@ -160,5 +162,21 @@ public class CommonUtil {
         else if ("video/mpeg4".equals(contentType))
             fileExt = ".mp4";
         return fileExt;
+    }
+    
+    /**
+     * 获取请求中名为openid的cookie
+     * @param req
+     * @return
+     */
+    public static String getCookieOpenid(HttpServletRequest req){
+    	String openid = null;
+		Cookie[] cookies = req.getCookies();
+		for(Cookie cookie:cookies){
+			if("openid".equals(cookie.getName())){
+				openid = cookie.getValue();
+			}
+		}
+		return openid;
     }
 }

@@ -67,6 +67,8 @@ public class WeixinUtil {
         if (null != jsonObject) {
             try {
                 snsUserInfo = new SNSUserInfo();
+                //是否关注
+                snsUserInfo.setSubscribe(jsonObject.getString("subscribe"));
                 // 用户的标识
                 snsUserInfo.setOpenId(jsonObject.getString("openid"));
                 // 昵称
@@ -83,6 +85,8 @@ public class WeixinUtil {
                 snsUserInfo.setHeadImgUrl(jsonObject.getString("headimgurl"));
                 // 用户特权信息
                 snsUserInfo.setPrivilegeList(JSONArray.toList(jsonObject.getJSONArray("privilege"), List.class));
+                // 客户端语言
+                snsUserInfo.setLanguage(jsonObject.getString("langeuage"));
             } catch (Exception e) {
                 snsUserInfo = null;
                 int errorCode = jsonObject.getInt("errcode");

@@ -72,11 +72,9 @@ public class MenuController {
     	  btn11.setName("报修");
     	  btn11.setType("view");
     	  //跳转链接
-    	  String REDIRECT_URI = CommonUtil.urlEncodeUTF8("https://linjuli.applinzi.com/OAuth.do");
-    	  //System.out.println(REDIRECT_URI);
+    	  String REDIRECT_URI = CommonUtil.urlEncodeUTF8("https://linjuli.applinzi.com/baoxiu/check.do");
     	  //scope=snsapi_base静默授权 snsapi_userinfo网页授权
     	  btn11.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+CommonUtil.appID+"&redirect_uri="+REDIRECT_URI+"&response_type=code&scope=snsapi_base&state=1#wechat_redirect");
-    	  //System.out.println("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+ConnectUtil.appID+"&redirect_uri="+REDIRECT_URI+"&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect");
     	  
 		  CommonButton btn00 = new CommonButton();
 		  btn00.setName("TEST1");

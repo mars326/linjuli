@@ -2,11 +2,15 @@ package com.linjuli.service.impl;
 import java.util.Date;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 
+import com.linjuli.dao.UserDao;
+import com.linjuli.model.web.User;
 import com.linjuli.model.weixin.message.res.TextMessage;
+import com.linjuli.service.UserService;
 import com.linjuli.service.WeixinService;
 import com.linjuli.util.MessageUtil;
 
@@ -19,6 +23,10 @@ import com.linjuli.util.MessageUtil;
  */
 @Service("weixinService")
 public class WeixinServiceImpl implements WeixinService{
+	@Resource
+	private UserDao userDao;
+	@Resource
+	private UserService userService;
     /**
      * 处理微信发来的请求
      * @param request
@@ -80,11 +88,13 @@ public class WeixinServiceImpl implements WeixinService{
                 String eventType = requestMap.get("Event");
                 // 关注
                 if (eventType.equals(MessageUtil.EVENT_TYPE_SUBSCRIBE)) {
-                    respContent = "谢谢您的关注！";
+                    subscribeDo(fromUserName);
+                	respContent = "谢谢您的关注！";
                 }
                 // 取消关注
                 else if (eventType.equals(MessageUtil.EVENT_TYPE_UNSUBSCRIBE)) {
                     // TODO 取消订阅后用户不会再收到公众账号发送的消息，因此不需要回复
+                	unSubscribeDo(fromUserName);
                 }
                 // 扫描带参数二维码
                 else if (eventType.equals(MessageUtil.EVENT_TYPE_SCAN)) {
@@ -97,6 +107,7 @@ public class WeixinServiceImpl implements WeixinService{
                 // 自定义菜单
                 else if (eventType.equals(MessageUtil.EVENT_TYPE_CLICK)) {
                     // TODO 处理菜单点击事件
+                	menuDo(fromUserName);
                 }
             }
             // 设置文本消息的内容
@@ -108,4 +119,36 @@ public class WeixinServiceImpl implements WeixinService{
         }
         return respXml;
     }
+
+
+	private void menuDo(String fromUserName) {
+		
+		
+	}
+
+
+	/**
+	 * 关注时
+	 * 保存用户信息
+	 * @param fromUserName
+	 */
+	private void subscribeDo(String fromUserName) {
+		User user = userDao.findUserByOpenId(fromUserName);
+		if(user != null){
+			int guanzhu = 1;
+			userService.createUser(fromUserName,guanzhu);
+		}
+	}
+	/**
+	 * 取消关注时
+	 * 修改数据库中的user表中的guanzhu为0
+	 * @param fromUserName
+	 */
+	private void unSubscribeDo(String fromUserName) {
+		User user = userDao.findUserByOpenId(fromUserName);
+		if(user != null){
+			user.setGuanzhu(0);
+			userDao.updateUser(user);
+		}
+	}
 }

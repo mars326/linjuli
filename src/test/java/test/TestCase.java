@@ -48,4 +48,9 @@ public class TestCase {
 		dao.createUser(user);
 		System.out.println(user.getId());
 	}
+	
+	@Test
+	public void test1(){
+		System.out.println("".equals(""));
+	}
 }

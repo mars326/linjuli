@@ -11,17 +11,18 @@ public class User implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -4415938915475693888L;
-//	id          int(10)       ID                     
 //	openid      char(55)      openid                 
 //	nickname    varchar(60)   微信网名           
-//	username    varchar(60)   真实姓名           
 //	province    varchar(60)   地区                 
 //	city        varchar(50)   城市                 
 //	headimgurl  varchar(200)  头像                 
+//	sex         tinyint(4)    性别                 
+//	language    varchar(50)   客户端语言   //以上为微信信息     
+//	id          int(10)       ID                     
 //	address     varchar(120)  地址                 
-//	language    varchar(50)   客户端语言        
 //	addtime     int(15)       添加日期           
 //	uptime      int(15)       更新日期           
+//	username    varchar(60)   真实姓名           
 //	cid         int(15)       所入住小区        
 //	jifen       int(15)       积分                 
 //	dakatime    int(15)       最后打卡时间     
@@ -30,7 +31,6 @@ public class User implements Serializable{
 //	dong        int(15)       栋                    
 //	unit        int(15)       单元                 
 //	room        int(15)       房间号              
-//	sex         tinyint(4)    性别                 
 //	isset       tinyint(4)    是否是授权过的  
 //	iscid       tinyint(4)    社区物管,1是      
 //	guanzhu     int(11)       

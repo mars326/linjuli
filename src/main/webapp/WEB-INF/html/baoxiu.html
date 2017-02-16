@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>报修</title>
+<script type="text/javascript" src="scripts/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="scripts/const.js"></script>
+<script type="text/javascript" src="scripts/submit.js"></script>
+</head>
+<body>
+	<form action="submitAll()">
+		姓名<input type="text" name="username" id="username"/><br/>
+		省<select id="province" name="province">
+			<option>安徽<option/>
+		</select><br/>
+		市<select id="city" name="city">
+			<option>芜湖<option/>
+		</select><br/>
+		小区<select id="cid" name="cid">
+			<option><option/>
+		</select><br/>
+		栋<select id="dong" name="dong">
+			<option><option/>
+		</select><br/>
+		单元<select id="unit" name="unit">
+			<option><option/>
+		</select><br/>
+		房间号<input type="text" name="room" id="room"/><br/>
+		上传图片<input type="file" name="image" id="image" multiple>
+		手机号<input type="tel" name="tel" id="tel"/><input type="button" value="免费获取验证码" id="sendTel"/><br/>
+		验证码<input type="text" name="checkCode" id="checkCode"><br/>
+		<input type="submit" value="提交">
+	</form>
+</body>
+</html>

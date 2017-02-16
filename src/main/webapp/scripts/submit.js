@@ -18,12 +18,58 @@ setTimeout(function() {
     },1000) 
 }
 
-function submitAll(){
+function submitRegister(){
 	if(checkTel()!=SUCCESS){
 		alert("验证码错误");
 		return;
 	}
-	alert("success");
+	url = "/user/create.do";
+	data = {
+			"username":$('#username').val(),
+			"province":$('province').val(),
+			"city":$('#city').val(),
+			"cid":$('#cid').val(),
+			"dong":$('#dong').val(),
+			"unit":$('#unit').val(),
+			"room":$('#room').val(),
+			"tel":$('#tel').val(),
+			"checkCode":$('#checkCode').val()
+	}
+	
+	$.post(url,data,function(result){
+		if(result.state == SUCCESS){
+			alert("注册成功");
+		}else{
+			alert("注册失败");
+		}
+	});
+}
+
+function submitBaoxiu(){
+	if(checkTel()!=SUCCESS){
+		alert("验证码错误");
+		return;
+	}
+	url = "/baoxiu/create.do";
+	data = {
+			"username":$('#username').val(),
+			"province":$('province').val(),
+			"city":$('#city').val(),
+			"cid":$('#cid').val(),
+			"dong":$('#dong').val(),
+			"unit":$('#unit').val(),
+			"room":$('#room').val(),
+			"tel":$('#tel').val(),
+			"checkCode":$('#checkCode').val()
+	}
+	
+	$.post(url,data,function(result){
+		if(result.state == SUCCESS){
+			alert("注册成功");
+		}else{
+			alert("注册失败");
+		}
+	});
 }
 
 //发送验证码

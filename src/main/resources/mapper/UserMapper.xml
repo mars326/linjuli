@@ -59,4 +59,34 @@
 				,#{guanzhu}
 	 		)
 	 </insert>
+	 <select id="findUserByOpenId" parameterType="string" resultType="com.linjuli.model.web.User">
+	 	SELECT
+				id
+				,openid
+				,nickname
+				,username
+				,province
+				,city
+				,headimgurl
+				,address
+				,language
+				,addtime
+				,uptime
+				,cid
+				,jifen
+				,dakatime
+				,tel
+				,teltime
+				,dong
+				,unit
+				,room
+				,sex
+				,isset
+				,iscid
+				,guanzhu
+	 	FROM
+	 		wechat_user
+	 	WHERE
+	 		openid=#{openid}
+	 </select>
 </mapper>

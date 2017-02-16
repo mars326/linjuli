@@ -9,6 +9,8 @@ import java.util.List;
 * 发布版本：V1.0  </br>
  */
 public class SNSUserInfo {
+	//是否关注
+	private String subscribe;
     // 用户标识
     private String openId;
     // 用户昵称
@@ -25,8 +27,28 @@ public class SNSUserInfo {
     private String headImgUrl;
     // 用户特权信息
     private List<String> privilegeList;
+    // 客户端语言
+    private String language;
+    
+    
 
-    public String getOpenId() {
+	public String getSubscribe() {
+		return subscribe;
+	}
+
+	public void setSubscribe(String subscribe) {
+		this.subscribe = subscribe;
+	}
+
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+
+	public String getOpenId() {
         return openId;
     }
 

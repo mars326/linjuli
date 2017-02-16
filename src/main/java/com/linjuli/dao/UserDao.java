@@ -9,4 +9,5 @@ import com.linjuli.model.web.User;
 public interface UserDao {
 	void createUser(User user);
 	void updateUser(User user);
+	User findUserByOpenId(String openid);
 }
