@@ -27,8 +27,6 @@ public class SNSUserInfo {
     private String headImgUrl;
     // 用户特权信息
     private List<String> privilegeList;
-    // 客户端语言
-    private String language;
     
     
 
@@ -38,14 +36,6 @@ public class SNSUserInfo {
 
 	public void setSubscribe(String subscribe) {
 		this.subscribe = subscribe;
-	}
-
-	public String getLanguage() {
-		return language;
-	}
-
-	public void setLanguage(String language) {
-		this.language = language;
 	}
 
 	public String getOpenId() {

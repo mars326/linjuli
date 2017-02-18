@@ -135,7 +135,7 @@ public class WeixinServiceImpl implements WeixinService{
 	private void subscribeDo(String fromUserName) {
 		User user = userDao.findUserByOpenId(fromUserName);
 		if(user != null){
-			int guanzhu = 1;
+			String guanzhu = "1";
 			userService.createUser(fromUserName,guanzhu);
 		}
 	}

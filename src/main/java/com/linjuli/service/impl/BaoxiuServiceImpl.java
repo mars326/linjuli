@@ -1,18 +1,21 @@
 package com.linjuli.service.impl;
 
+import java.io.IOException;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 
-import com.linjuli.dao.CommunityDao;
 import com.linjuli.dao.LouguanDao;
 import com.linjuli.dao.UserDao;
 import com.linjuli.model.web.Baoxiu;
 import com.linjuli.model.web.User;
 import com.linjuli.service.BaoxiuService;
 import com.linjuli.service.exception.BaoxiuArgumentException;
+import com.linjuli.thread.TokenThread;
 import com.linjuli.util.CommonUtil;
+import com.linjuli.util.HttpDownloadUtil;
 @Service("baoxiuService")
 public class BaoxiuServiceImpl implements BaoxiuService{
 	@Resource(name="userDao")
@@ -51,7 +54,23 @@ public class BaoxiuServiceImpl implements BaoxiuService{
 		String content = check(req, "content");
 		String relcontent = null;
 		String picurl = "";
-		String media_id = "";
+		String media_id = req.getParameter("image");
+		String[] mediaIds = media_id.split("#");
+		for(String mediaId:mediaIds){
+			if(mediaId == null || mediaId == ""){
+				continue;
+			}
+			String url="https://qyapi.weixin.qq.com/cgi-bin/media/get?access_token="+TokenThread.accessToken.getAccessToken()+"&media_id="+mediaId;
+			String fileName = System.currentTimeMillis()+".jpg";
+			String savePath = "/linjuli/src/main/webapp/uploads/";
+			picurl = picurl+"#"+ savePath + fileName;
+			try {
+				HttpDownloadUtil.downLoadFromUrl(url, fileName, savePath);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
 		int addtime = (int)(System.currentTimeMillis()/1000);
 		int chuli_time = 0;
 		int jieshu_time = 0;

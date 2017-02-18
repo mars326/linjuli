@@ -12,5 +12,5 @@ public interface CommunityDao {
 	 * @param openid
 	 * @return
 	 */
-	int findCidByOpenid(String openid); 
+	Integer findCidByOpenid(String openid); 
 }

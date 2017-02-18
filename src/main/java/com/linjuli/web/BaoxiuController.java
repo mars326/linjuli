@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.linjuli.model.web.User;
 import com.linjuli.model.weixin.pojo.SNSUserInfo;
+import com.linjuli.model.weixin.pojo.SNSUserInfo2;
 import com.linjuli.service.BaoxiuService;
-import com.linjuli.service.OauthService;
 import com.linjuli.service.UserService;
-import com.linjuli.util.CommonUtil;
+import com.linjuli.thread.TokenThread;
 import com.linjuli.util.OauthUtil;
 
 /**
@@ -41,25 +41,40 @@ public class BaoxiuController {
 	public void check(HttpServletRequest req,HttpServletResponse res) throws ServletException, IOException{
 		req.setCharacterEncoding("utf-8");
 		res.setCharacterEncoding("utf-8");
-		SNSUserInfo snsUserInfo = OauthUtil.oauthCheck(req,res);
-		String openid = snsUserInfo.getOpenId();
-		User user = userService.createUser(openid);
+		String guanzhu = req.getParameter("guanzhu");
+		User user;
+		String openid;
+		//网页授权用户
+		if("0".equals(guanzhu)){
+			SNSUserInfo snsUserInfo = OauthUtil.oauthCheck(req,res);
+			openid = snsUserInfo.getOpenId();
+			user = userService.createUser(openid,guanzhu);
+		}else{
+		//已关注用户
+			SNSUserInfo2 snsUserInfo = OauthUtil.oauthCheck(req,res,TokenThread.accessToken.getAccessToken());
+			openid = snsUserInfo.getOpenId();
+			user = userService.createUser(openid);
+		}
 		//未绑定小区
 		if(user.getIsset()==0){
-			req.getRequestDispatcher("WEB-INF/html/register.html").forward(req, res);
+			req.getRequestDispatcher("/WEB-INF/html/register.html").forward(req, res);
 			return;
 		}
-		req.getRequestDispatcher("WEB-INF/html/baoxiu.html").forward(req, res);
+		req.getRequestDispatcher("/WEB-INF/html/baoxiu.html").forward(req, res);
 	}
 	
 	/**
 	 * 创建报修信息
 	 * @param req
 	 * @param res
+	 * @throws IOException 
 	 */
 	@RequestMapping("/create.do")
-	public void create(HttpServletRequest req,HttpServletResponse res){
+	public void create(HttpServletRequest req,HttpServletResponse res) throws IOException{
+        req.setCharacterEncoding("UTF-8");
+        res.setCharacterEncoding("UTF-8");
 		baoxiuService.createBaoxiu(req);
+		res.sendRedirect("/index.html");
 	}
 	
 	/**

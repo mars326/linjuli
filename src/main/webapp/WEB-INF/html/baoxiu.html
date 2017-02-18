@@ -3,12 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <title>报修</title>
-<script type="text/javascript" src="scripts/jquery-3.1.1.min.js"></script>
-<script type="text/javascript" src="scripts/const.js"></script>
-<script type="text/javascript" src="scripts/submit.js"></script>
+<script type="text/javascript" src="../../scripts/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../../scripts/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="../../scripts/const.js"></script>
+<script type="text/javascript" src="../../scripts/submit.js"></script>
+<script type="text/javascript" src="../../scripts/baoxiu.js"></script>
 </head>
 <body>
-	<form action="submitAll()">
+	<form action="http://linjuli.applinzi.com/baoxiu/create.do" method="post" onsubmit="return checkTel()">
 		姓名<input type="text" name="username" id="username"/><br/>
 		省<select id="province" name="province">
 			<option>安徽<option/>
@@ -26,7 +28,10 @@
 			<option><option/>
 		</select><br/>
 		房间号<input type="text" name="room" id="room"/><br/>
-		上传图片<input type="file" name="image" id="image" multiple>
+		<input type="button" name="image" id="image" value="上传图片">
+		<input type="button" name="image0" id="image0" style="display:none;">
+		<input type="button" name="image1" id="image1" style="display:none;">
+		<input type="button" name="image2" id="image2" style="display:none;">
 		手机号<input type="tel" name="tel" id="tel"/><input type="button" value="免费获取验证码" id="sendTel"/><br/>
 		验证码<input type="text" name="checkCode" id="checkCode"><br/>
 		<input type="submit" value="提交">

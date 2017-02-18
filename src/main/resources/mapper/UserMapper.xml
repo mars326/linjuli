@@ -3,90 +3,109 @@
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 
 <mapper namespace="com.linjuli.dao.UserDao">
-	 <insert id="createUser" parameterType="com.linjuli.model.web.User" useGeneratedKeys="true" keyProperty="id">
-	 	INSERT
-	 	INTO
-	 		wechat_user
-		 	(
-		 		id
-				,openid
-				,nickname
-				,username
-				,province
-				,city
-				,headimgurl
-				,address
-				,language
-				,addtime
-				,uptime
-				,cid
-				,jifen
-				,dakatime
-				,tel
-				,teltime
-				,dong
-				,unit
-				,room
-				,sex
-				,isset
-				,iscid
-				,guanzhu
-		 	)
-	 	VALUES
-	 		(
-	 			DEFAULT
-	 			,#{openid}
-				,#{nickname}
-				,#{username}
-				,#{province}
-				,#{city}
-				,#{headimgurl}
-				,#{address}
-				,#{language}
-				,#{addtime}
-				,#{uptime}
-				,#{cid}
-				,#{jifen}
-				,#{dakatime}
-				,#{tel}
-				,#{teltime}
-				,#{dong}
-				,#{unit}
-				,#{room}
-				,#{sex}
-				,#{isset}
-				,#{iscid}
-				,#{guanzhu}
-	 		)
-	 </insert>
-	 <select id="findUserByOpenId" parameterType="string" resultType="com.linjuli.model.web.User">
-	 	SELECT
-				id
-				,openid
-				,nickname
-				,username
-				,province
-				,city
-				,headimgurl
-				,address
-				,language
-				,addtime
-				,uptime
-				,cid
-				,jifen
-				,dakatime
-				,tel
-				,teltime
-				,dong
-				,unit
-				,room
-				,sex
-				,isset
-				,iscid
-				,guanzhu
-	 	FROM
-	 		wechat_user
-	 	WHERE
-	 		openid=#{openid}
-	 </select>
+	<insert id="createUser" parameterType="com.linjuli.model.web.User"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT
+		INTO
+		wechat_user
+		(
+		id
+		,openid
+		,nickname
+		,username
+		,province
+		,city
+		,headimgurl
+		,address
+		,language
+		,addtime
+		,uptime
+		,cid
+		,jifen
+		,dakatime
+		,tel
+		,teltime
+		,dong
+		,unit
+		,room
+		,sex
+		,isset
+		,iscid
+		,guanzhu
+		)
+		VALUES
+		(
+		DEFAULT
+		,#{openid}
+		,#{nickname}
+		,#{username}
+		,#{province}
+		,#{city}
+		,#{headimgurl}
+		,#{address}
+		,#{language}
+		,#{addtime}
+		,#{uptime}
+		,#{cid}
+		,#{jifen}
+		,#{dakatime}
+		<if test="tel != null">,#{tel}</if>
+		<if test="tel == null">,DEFAULT</if>
+		
+		<if test="teltime != null">,#{teltime}</if>
+		<if test="teltime == null">,DEFAULT</if>
+		
+		<if test="dong != null">,#{dong}</if>
+		<if test="dong == null">,DEFAULT</if>
+		
+		<if test="unit != null">,#{unit}</if>
+		<if test="unit == null">,DEFAULT</if>
+		
+		<if test="room != null">,#{room}</if>
+		<if test="room == null">,DEFAULT</if>
+		
+		<if test="tel != null">,#{sex}</if>
+		<if test="tel == null">,DEFAULT</if>
+		
+		<if test="isset != null">,#{isset}</if>
+		<if test="isset == null">,DEFAULT</if>
+		
+		<if test="iscid != null">,#{iscid}</if>
+		<if test="iscid == null">,DEFAULT</if>	
+			
+		<if test="guanzhu != null">,#{guanzhu}</if>
+		<if test="guanzhu == null">,DEFAULT</if>
+		)
+	</insert>
+	<select id="findUserByOpenId" parameterType="string"
+		resultType="com.linjuli.model.web.User">
+		SELECT
+		id
+		,openid
+		,nickname
+		,username
+		,province
+		,city
+		,headimgurl
+		,address
+		,language
+		,addtime
+		,uptime
+		,cid
+		,jifen
+		,dakatime
+		,tel
+		,teltime
+		,dong
+		,unit
+		,room
+		,sex
+		,isset
+		,iscid
+		,guanzhu
+		FROM
+		wechat_user
+		WHERE
+		openid=#{openid}
+	</select>
 </mapper>

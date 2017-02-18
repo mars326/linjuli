@@ -11,6 +11,6 @@ import com.linjuli.model.web.User;
 public interface UserService {
 	User findUserByOpenid(String openid);
 	User createUser(String openid);
-	User createUser(String openid,int guanzhu);
+	User createUser(String openid,String guanzhu);
 	User updateUser(HttpServletRequest req);
 }

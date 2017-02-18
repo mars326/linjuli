@@ -1,6 +1,7 @@
 package com.linjuli.web;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -19,22 +20,25 @@ import com.linjuli.util.JsonResult;
  *
  */
 @Controller
+@RequestMapping("/tel")
 public class TelController {
 	@Resource(name="telService")
 	private TelService telService;
 	
 	@RequestMapping("/checkTel.do")
 	@ResponseBody
-	public JsonResult checkTel(HttpServletRequest req,HttpServletResponse res){
+	public JsonResult<Object> checkTel(HttpServletRequest req,HttpServletResponse res){
 		String tel = req.getParameter("tel");
 		String checkCode = req.getParameter("checkCode");
-		HttpSession session = req.getSession();
+		//System.out.println(tel+"#"+checkCode);
+		String telCache = "0";
+		String checkCodeCache = "0";
 		int result = 1;
-		if(tel == session.getAttribute("tel") && checkCode == session.getAttribute("checkCode")){
+		if(telService.checkTel(tel,checkCode)){
 			result = 0;
-			return new JsonResult(result);
+			return new JsonResult<Object>(result);
 		}
-		return new JsonResult(result);
+		return new JsonResult<Object>(result);
 	}
 	
 	@RequestMapping("/sendTel.do")
@@ -47,9 +51,14 @@ public class TelController {
 			return new JsonResult(result);
 		}
 		String checkCode = String.valueOf(result);
-		HttpSession session = req.getSession();
-		session.setAttribute("checkCode", checkCode);
-		session.setAttribute("tel", tel);		
+		
+//		//≤‚ ‘
+//		String tel = "15757101796";
+//		String checkCode = "123456";
+//		int result = 0;
+		
+		
+		//System.out.println(tel+"#"+checkCode);
 		result = 0;
 		return new JsonResult(result);
 	}

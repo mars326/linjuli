@@ -19,6 +19,7 @@ public class TokenThread implements Runnable {
     // 第三方用户唯一凭证密钥
     public static String appsecret = "";
     public static AccessToken accessToken = null;
+    public static String jsapi_ticket = null;
 
     public void run() {
         while (true) {
@@ -27,6 +28,10 @@ public class TokenThread implements Runnable {
                 if (null != accessToken) {
                 	//其他类通过TokenThread.accessToken.getAccessToken()获取token
                     log.info("获取access_token成功，有效时长{}秒 token:{}", accessToken.getExpiresIn(), accessToken.getAccessToken());
+                    
+                    //微信js接口调用凭证
+                    jsapi_ticket = CommonUtil.getJsapi_ticket(accessToken.getAccessToken());
+                    log.info("获取jsapi_ticket成功");
                     // 休眠7000秒
                     Thread.sleep((accessToken.getExpiresIn() - 200)*1000);
                 } else {

@@ -35,12 +35,14 @@ public class WeixinController{
 
     /**
      * 确认请求来自微信服务器
+     * @throws UnsupportedEncodingException 
      * @throws IOException 
      */
     @RequestMapping(value="weixin.do",method=RequestMethod.GET)
     @ResponseBody
-    public String weixinReqCheck(HttpServletRequest request, HttpServletResponse response){
-        
+    public String weixinReqCheck(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException{
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         // 随机字符串
         String echostr = request.getParameter("echostr");
 

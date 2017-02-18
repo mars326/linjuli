@@ -52,5 +52,9 @@ public class TestCase {
 	@Test
 	public void test1(){
 		System.out.println("".equals(""));
+		String[] str = {"1","a"};
+		System.out.println(str);
+		System.out.println((int)(System.currentTimeMillis()/1000+60));
+		System.out.println(System.currentTimeMillis()/1000+60);
 	}
 }

@@ -3,4 +3,5 @@
  */
 var SUCCESS = 0;
 var ERROR = 1;
+var ROOTURL = "http://linjuli.applinzi.com/";
  

@@ -3,7 +3,7 @@
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 
 <mapper namespace="com.linjuli.dao.CommunityDao">
-	 <select id="findCidByOpenid" parameterType="string" resultType="int">
+	 <select id="findCidByOpenid" parameterType="string" resultType="Integer">
      		SELECT
      			id
      		FROM

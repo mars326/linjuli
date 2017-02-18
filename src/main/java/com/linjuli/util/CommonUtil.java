@@ -126,6 +126,17 @@ public class CommonUtil {
         }
         return token;
     }
+    public static String getJsapi_ticket(String access_token){
+		String url = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token="+ access_token + "&type=jsapi";
+		JSONObject json = WeixinUtil.httpRequest(url, "GET", null);
+		String jsapi_ticket = null;
+		if (json != null) {
+			jsapi_ticket = json.getString("ticket");
+			return jsapi_ticket;
+		}
+		log.error("ªÒ»°jsapi_ticket ß∞‹ ");
+		return jsapi_ticket;
+    }
     
     /**
      * URL±‡¬Î£®utf-8£©
@@ -173,6 +184,7 @@ public class CommonUtil {
     	String openid = null;
 		Cookie[] cookies = req.getCookies();
 		for(Cookie cookie:cookies){
+			System.out.println("cookie:"+cookie.getName());
 			if("openid".equals(cookie.getName())){
 				openid = cookie.getValue();
 			}

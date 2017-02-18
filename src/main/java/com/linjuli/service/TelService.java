@@ -12,4 +12,7 @@ public interface TelService {
 	 * @return 验证码   1为发送失败
 	 */
 	int sendTel(String tel);
+	
+	boolean checkTel(String tel,String checkCode);
+
 }
