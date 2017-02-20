@@ -60,7 +60,7 @@ public class BaoxiuController {
 			req.getRequestDispatcher("/WEB-INF/html/register.html").forward(req, res);
 			return;
 		}
-		req.getRequestDispatcher("/WEB-INF/html/baoxiu.jsp").forward(req, res);
+		req.getRequestDispatcher("/WEB-INF/html/baoxiu.html").forward(req, res);
 	}
 	
 	/**
