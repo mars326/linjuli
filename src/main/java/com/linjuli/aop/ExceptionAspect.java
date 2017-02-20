@@ -17,7 +17,7 @@ import com.linjuli.util.JsonResult;
 @Component
 @Aspect
 public class ExceptionAspect {
-
+	private static Logger log = LoggerFactory.getLogger(CommonUtil.class);
 	@Around("within (com.linjuli.web.*Controller)")
 	public Object process(ProceedingJoinPoint target){
 		try{
@@ -28,7 +28,7 @@ public class ExceptionAspect {
 			return obj;
 		}catch(Throwable e){
 			System.out.println("”–“Ï≥£");
-			e.printStackTrace();
+			log.error("“Ï≥£:",e);
 			return new JsonResult(e);
 		}
 	}

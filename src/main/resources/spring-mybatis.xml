@@ -24,16 +24,19 @@
 	<util:properties id="db" location="classpath:mysql.properties"></util:properties>
 	<bean id="ds" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
-		<property name="driverClassName" value="#{db.driver}"></property>
+		<!--  --><property name="driverClassName" value="#{db.driver}"></property>
 		<property name="url" value="#{db.url}"></property>
 		<property name="username" value="#{db.user}"></property>
 		<property name="password" value="#{db.password}"></property>
 		<property name="initialSize" value="#{db.initSize}"></property>
 		<property name="maxActive" value="#{db.maxSize}"></property>
-		<property name="removeAbandoned" value="#{db.removeAbandoned}"></property>
+		<property name="validationQuery" value="SELECT 1" />
+    	<property name="testOnBorrow" value="true"/>
+		<!-- <property name="removeAbandoned" value="#{db.removeAbandoned}"></property>
 		<property name="removeAbandonedTimeout" value="#{db.removeAbandonedTimeout}"></property>
 		<property name="maxIdle" value="#{db.maxIdle}"></property>
 		<property name="minIdle" value="#{db.minIdle}"></property>
+		 -->
 	</bean>
 
 

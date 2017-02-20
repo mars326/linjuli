@@ -108,4 +108,33 @@
 		WHERE
 		openid=#{openid}
 	</select>
+	<update id="updateUser" parameterType="com.linjuli.model.web.User">
+		UPDATE
+			wechat_user
+		SET
+			id=id
+		<if test="nickname != null">,nickname = #{nickname}</if>
+		<if test="username != null">,username = #{username}</if>
+		<if test="province != null">,province = #{province}</if>
+		<if test="city != null">,city = #{city}</if>
+		<if test="headimgurl != null">,headimgurl = #{headimgurl}</if>
+		<if test="address != null">,address = #{address}</if>
+		<if test="language != null">,language = #{language}</if>
+		<if test="addtime != null">,addtime = #{addtime}</if>
+		<if test="uptime != null">,uptime = #{uptime}</if>
+		<if test="cid != null">,cid = #{cid}</if>
+		<if test="jifen != null">,jifen = #{jifen}</if>
+		<if test="dakatime != null">,dakatime = #{dakatime}</if>
+		<if test="tel != null">,tel = #{tel}</if>
+		<if test="teltime != null">,teltime = #{teltime}</if>
+		<if test="dong != null">,dong = #{dong}</if>
+		<if test="unit != null">,unit = #{unit}</if>
+		<if test="room != null">,room = #{room}</if>
+		<if test="tel != null">,sex = #{sex}</if>
+		<if test="isset != null">,isset = #{isset}</if>
+		<if test="iscid != null">,iscid = #{iscid}</if>
+		<if test="guanzhu != null">,guanzhu = #{guanzhu}</if>
+		WHERE
+			openid = #{openid}
+	</update>
 </mapper>

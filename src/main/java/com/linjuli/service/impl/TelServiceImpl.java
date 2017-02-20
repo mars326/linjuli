@@ -99,6 +99,9 @@ public class TelServiceImpl implements TelService {
 	public boolean checkTel(String tel, String checkCode) {
 		String checkCodeCache = telDao.findCheckCodeByTel(tel);
 		if(checkCodeCache != null){
+			if(checkCode != checkCodeCache ){
+				return false;
+			}
 			int endTime = telDao.findTimeByTel(tel);
 			if(endTime>(int)(System.currentTimeMillis()/1000)){
 				return true;

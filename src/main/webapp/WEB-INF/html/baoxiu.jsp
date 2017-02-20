@@ -1,8 +1,18 @@
-<!DOCTYPE html>
+<%@ page language="java"  contentType="text/html; charset=utf-8"  pageEncoding="utf-8"%>
+<%@page import="com.linjuli.model.weixin.pojo.JsConfig"%>
+<%@page language="java" import="com.linjuli.util.WeixinUtil" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>报修</title>
+<%
+        JsConfig  jsConfig = WeixinUtil.getWxConfig(request);
+        request.setAttribute("appId", jsConfig.getAppId());
+        request.setAttribute("timestamp", jsConfig.getTimestamp());
+        request.setAttribute("nonceStr", jsConfig.getNonceStr());
+        request.setAttribute("signature", jsConfig.getSignature());
+        %>
 <script type="text/javascript" src="../../scripts/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="../../scripts/jweixin-1.0.0.js"></script>
 <script type="text/javascript" src="../../scripts/const.js"></script>

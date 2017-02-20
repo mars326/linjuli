@@ -31,14 +31,12 @@ public class TelController {
 		String tel = req.getParameter("tel");
 		String checkCode = req.getParameter("checkCode");
 		//System.out.println(tel+"#"+checkCode);
-		String telCache = "0";
-		String checkCodeCache = "0";
 		int result = 1;
-		if(telService.checkTel(tel,checkCode)){
+//		if(telService.checkTel(tel,checkCode)){
 			result = 0;
 			return new JsonResult<Object>(result);
-		}
-		return new JsonResult<Object>(result);
+//		}
+//		return new JsonResult<Object>(result);
 	}
 	
 	@RequestMapping("/sendTel.do")

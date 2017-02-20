@@ -31,7 +31,7 @@ public class TokenThread implements Runnable {
                     
                     //微信js接口调用凭证
                     jsapi_ticket = CommonUtil.getJsapi_ticket(accessToken.getAccessToken());
-                    log.info("获取jsapi_ticket成功");
+                    log.info("获取jsapi_ticket成功,{}",jsapi_ticket);
                     // 休眠7000秒
                     Thread.sleep((accessToken.getExpiresIn() - 200)*1000);
                 } else {

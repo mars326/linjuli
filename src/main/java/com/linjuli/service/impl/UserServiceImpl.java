@@ -55,6 +55,7 @@ public class UserServiceImpl implements UserService {
 
 				int id = 0;
 				user = new User(id, openid, nickname, null, province, city, headimgurl, null, language, addtime, 0, 0, 0, 0, null, 0, 0, 0, 0, sex, 0, 0,0);
+				//System.out.println(user);
 				userDao.createUser(user);
 				return user;
 			}
@@ -73,6 +74,7 @@ public class UserServiceImpl implements UserService {
 			int id = 0;
 			user = new User(id, openid, nickname, null, province, city, headimgurl, null, language, addtime, 0, 0, 0, 0, null, 0, 0, 0, 0, sex, 0, 0,1);
 			userDao.createUser(user);
+			System.out.println(user);
 			return user;
 
 		}
@@ -86,7 +88,8 @@ public class UserServiceImpl implements UserService {
 	public User updateUser(HttpServletRequest req) {
 		//ªÒ»°opeid
 		String openid = CommonUtil.getCookieOpenid(req);
-		
+		System.out.println(req.getParameterMap());
+		System.out.println(req.getParameterNames());
 		User user = userDao.findUserByOpenId(openid);
 		String username = req.getParameter("username");
 		String address = req.getParameter("address");
@@ -104,6 +107,22 @@ public class UserServiceImpl implements UserService {
 		int uptime = (int)(System.currentTimeMillis()/1000);
 		int teltime = (int)(System.currentTimeMillis()/1000);
 		int dakatime = 0;
+		
+		user.setUsername(username);
+		user.setAddress(address);
+		user.setTel(tel);
+		user.setCid(cid);
+		user.setJifen(jifen);
+		user.setDong(dong);
+		user.setUnit(unit);
+		user.setRoom(room);
+		user.setIsset(isset);
+		user.setIscid(iscid);
+		user.setUptime(uptime);
+		user.setTeltime(teltime);
+		user.setDakatime(dakatime);
+		
+		userDao.updateUser(user);
 		return user;
 	}
 
