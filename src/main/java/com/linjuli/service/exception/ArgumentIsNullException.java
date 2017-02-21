@@ -1,29 +1,33 @@
 package com.linjuli.service.exception;
 
-public class BaoxiuArgumentException extends RuntimeException {
+/**
+ * @author mars3
+ *	参数为空异常
+ */
+public class ArgumentIsNullException extends RuntimeException {
 
-	public BaoxiuArgumentException() {
+	public ArgumentIsNullException() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public BaoxiuArgumentException(String message, Throwable cause, boolean enableSuppression,
+	public ArgumentIsNullException(String message, Throwable cause, boolean enableSuppression,
 			boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
 		// TODO Auto-generated constructor stub
 	}
 
-	public BaoxiuArgumentException(String message, Throwable cause) {
+	public ArgumentIsNullException(String message, Throwable cause) {
 		super(message, cause);
 		// TODO Auto-generated constructor stub
 	}
 
-	public BaoxiuArgumentException(String message) {
+	public ArgumentIsNullException(String message) {
 		super(message);
 		// TODO Auto-generated constructor stub
 	}
 
-	public BaoxiuArgumentException(Throwable cause) {
+	public ArgumentIsNullException(Throwable cause) {
 		super(cause);
 		// TODO Auto-generated constructor stub
 	}

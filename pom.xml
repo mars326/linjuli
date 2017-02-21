@@ -71,7 +71,6 @@
 	  <artifactId>slf4j-log4j12</artifactId>
 	  <version>1.5.10</version>
 	</dependency>
-	
 	<!-- 短信验证码 -->
 	<dependency>
 	  <groupId>commons-codec</groupId>

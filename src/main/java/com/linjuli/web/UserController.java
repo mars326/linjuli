@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -47,7 +48,15 @@ public class UserController {
 			user = userService.updateUser(req);
 			String tel = user.getTel();
 			if(tel != null){
-				res.sendRedirect("/baoxiu/check.do");
+				//通过cookie判断要重定向的网页
+				Cookie[] cookies = req.getCookies();
+				String url = "/index.html";
+				for(Cookie cookie:cookies){
+					if("from".equals(cookie.getName())){
+						url = CommonUtil.ROOTURL+cookie.getValue();
+					}
+				}
+				res.sendRedirect(url);
 				return new JsonResult<User>(JsonResult.SUCCESS);
 			}
 			return new JsonResult<User>("创建失败,请稍后重试");

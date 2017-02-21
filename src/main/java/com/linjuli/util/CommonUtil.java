@@ -33,6 +33,7 @@ public class CommonUtil {
 	public static final String appID = "wx3d29b9a8062e7acf";
 	public static final String appsecret = "87d7400a23ff526891449c2491ae7eed";
 	public static final String token = "linjuliwechat";
+	public static final String ROOTURL = "http://linjuli.applinzi.com/";
 
 	private static Logger log = LoggerFactory.getLogger(CommonUtil.class);
 

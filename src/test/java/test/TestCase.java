@@ -9,7 +9,9 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.linjuli.dao.BaoxiuDao;
 import com.linjuli.dao.UserDao;
+import com.linjuli.model.web.Baoxiu;
 import com.linjuli.model.web.User;
 import com.linjuli.util.CommonUtil;
 
@@ -62,6 +64,10 @@ public class TestCase {
 	}
 	@Test
 	public void test2(){
+		System.out.println(new Date(1446818919000L));
+	}
+	@Test
+	public void test3(){
 		String openid = null;
 		Cookie[] cookies = null;
 		for(Cookie cookie:cookies){
@@ -75,5 +81,14 @@ public class TestCase {
 			}
 
 		}
+	}
+	
+	/**
+	 * ²âÊÔ±¨ÐÞµÄDao²ã
+	 */
+	@Test
+	public void baoxiuDao(){
+		BaoxiuDao baoxiuDao = ctx.getBean("baoxiuDao",BaoxiuDao.class);
+		baoxiuDao.createBaoxiu(new Baoxiu(1, 0, 0, 0, 0, null, 0, null, null, null, null, 0, 0, 0, 0, 0));
 	}
 }

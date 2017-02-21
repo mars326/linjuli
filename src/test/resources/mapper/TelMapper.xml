@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.linjuli.dao.TelDao">
+	<insert id="save" parameterType="com.linjuli.model.web.TelCache">
+		INSERT INTO
+			wechat_tel_cache
+			(
+				tel,
+				checkCode,
+				endTime
+			)
+		VALUES
+			(
+				#{tel},
+				#{checkCode},
+				#{endTime}
+			)
+	</insert>
+	<update id="updateTime" parameterType="com.linjuli.model.web.TelCache">
+		UPDATE
+			wechat_tel_cache
+		SET
+			checkCode = #{checkCode},
+			endTime = #{endTime}
+		WHERE
+			tel = #{tel}
+
+	</update>
+	<select id="findTimeByTel" parameterType="String" resultType="Integer">
+		SELECT
+			IFNULL(endTime,0)
+		FROM
+			wechat_tel_cache
+		WHERE
+			EXISTS
+			(
+				SELECT 
+					1 
+				FROM 
+					wechat_tel_cache 
+				WHERE 
+					tel=#{tel}
+			)
+			
+	</select>
+	<select id="findCheckCodeByTel" parameterType="String" resultType="String">
+		SELECT
+			checkCode
+		FROM
+			wechat_tel_cache
+		WHERE
+			EXISTS
+			(
+				SELECT 
+					1 
+				FROM 
+					wechat_tel_cache 
+				WHERE 
+					tel=#{tel}
+			)
+			
+	</select>
+</mapper>

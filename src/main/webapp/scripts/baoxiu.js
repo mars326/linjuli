@@ -41,9 +41,12 @@ function wxChooseImage() {
 		sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有  
 		success: function (data) {  
 			var localIds = data.localIds;  // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片   
-			for(i=0;i<localIds.length-1;i++){
-				var mediaId = wxuploadImage(localIds[i]);
-				$('#image'+i).value = mediaId;
+			for(i=0;i<localIds.length;i++){
+				var localId = localIds[i];
+				var mediaId = wxuploadImage(localId);
+				
+				$('#image'+i+'Txt').val(mediaId.toString);
+				$('#image'+i).attr("src",localId);
 			}
 		},  
 		fail: function (res) {  

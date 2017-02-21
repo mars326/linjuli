@@ -8,6 +8,8 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import com.linjuli.thread.TokenThread;
+
 public class HttpDownloadUtil {
 	public static void  downLoadFromUrl(String urlStr,String fileName,String savePath) throws IOException{  
 		URL url = new URL(urlStr);    
@@ -61,11 +63,13 @@ public class HttpDownloadUtil {
 		return bos.toByteArray();    
 	}    
 
-//	public static void main(String[] args) {  
-//		try{  
-//			downLoadFromUrl("http://images.17173.com/2010/www/roll/201003/0301sohu01.jpg","°Ù¶È.jpg","/linjuli/src/main/webapp/uploads");  
-//		}catch (Exception e) {  
-//			e.printStackTrace();  
-//		}  
-//	} 
+	public static void main(String[] args) {  
+		try{  
+			String url="https://qyapi.weixin.qq.com/cgi-bin/media/get?access_token="+"TyGNf9sfkS98R_zYCNnoolxjKtkh6-K-kueUuVaPazqnMMinQ3dKpQ6WE2N35htvEG9q2SK2Ss1sGecJrngVuma3zlDsd3W95VtIRyUPgT7i2VPN_t5nJraIus7DILBvMKNjABASQT"+"&media_id="+"1237378768e7q8e7r8qwesafdasdfasdfaxss111";
+			String fileName = System.currentTimeMillis()+".jpg";
+			downLoadFromUrl(url,fileName,"d:/");  
+		}catch (Exception e) {  
+			e.printStackTrace();  
+		}  
+	} 
 }

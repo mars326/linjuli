@@ -3,6 +3,7 @@ package com.linjuli.web;
 import java.io.IOException;
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,6 +16,7 @@ import com.linjuli.model.weixin.pojo.SNSUserInfo2;
 import com.linjuli.service.BaoxiuService;
 import com.linjuli.service.UserService;
 import com.linjuli.thread.TokenThread;
+import com.linjuli.util.CommonUtil;
 import com.linjuli.util.OauthUtil;
 
 /**
@@ -51,13 +53,19 @@ public class BaoxiuController {
 			user = userService.createUser(openid,guanzhu);
 		}else{
 		//已关注用户
-			SNSUserInfo2 snsUserInfo = OauthUtil.oauthCheck(req,res,TokenThread.accessToken.getAccessToken());
-			openid = snsUserInfo.getOpenId();
+			openid = CommonUtil.getCookieOpenid(req);
+			if(openid == null){
+				SNSUserInfo2 snsUserInfo = OauthUtil.oauthCheck(req,res,TokenThread.accessToken.getAccessToken());
+				openid = snsUserInfo.getOpenId();
+			}
 			user = userService.createUser(openid);
 		}
 		//未绑定小区
 		if(user.getIsset()==0){
 			req.getRequestDispatcher("/WEB-INF/html/register.html").forward(req, res);
+			Cookie from = new Cookie("from", "baoxiu/check.do");
+			from.setPath("/");
+			res.addCookie(from);
 			return;
 		}
 		req.getRequestDispatcher("/WEB-INF/html/baoxiu.html").forward(req, res);
@@ -68,13 +76,14 @@ public class BaoxiuController {
 	 * @param req
 	 * @param res
 	 * @throws IOException 
+	 * @throws ServletException 
 	 */
 	@RequestMapping("/create.do")
-	public void create(HttpServletRequest req,HttpServletResponse res) throws IOException{
+	public void create(HttpServletRequest req,HttpServletResponse res) throws IOException, ServletException{
         req.setCharacterEncoding("UTF-8");
         res.setCharacterEncoding("UTF-8");
 		baoxiuService.createBaoxiu(req);
-		res.sendRedirect("/index.html");
+		req.getRequestDispatcher("/index.html").forward(req, res);;
 	}
 	
 	/**

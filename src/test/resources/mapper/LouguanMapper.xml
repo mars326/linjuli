@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.linjuli.dao.LouguanDao">
+	<!-- 数据库中的表未修改 -->
+	 <select id="findLidByCidDongUnit" parameterType="int" >
+	 	SELECT
+	 		id
+	 	FROM
+	 		wechat_louguan
+	 	WHERE
+	 		cid = #{0},
+	 		dong = #{1},
+	 		unit = #{2}
+	 		
+	 </select>
+</mapper>

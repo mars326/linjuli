@@ -37,7 +37,8 @@ function sendTel(){
 }
 
 //校验验证码
-function checkTel(){
+function checkTelBaoxiu(){
+	$('form:eq(0)').attr("action",ROOTURL+"baoxiu/create.do");
 	url=ROOTURL+"tel/checkTel.do";
 	data={
 			
@@ -46,6 +47,25 @@ function checkTel(){
 	}
 	$.getJSON(url, data, function(result) {
 		if (result.state == SUCCESS) {
+			alert("验证")
+			return true;
+		}else{
+			alert("验证码错误");
+			return false;
+		}
+	});
+}
+//校验验证码
+function checkTelUser(){
+	url=ROOTURL+"tel/checkTel.do";
+	data={
+			
+			"tel":$('#tel').val(),
+			"checkCode":$('#checkCode').val()
+	}
+	$.getJSON(url, data, function(result) {
+		if (result.state == SUCCESS) {
+			$('form:eq(0)').attr("action",ROOTURL+"user/create.do");
 			return true;
 		}else{
 			alert("验证码错误");
