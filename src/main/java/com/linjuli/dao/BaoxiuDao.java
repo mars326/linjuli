@@ -1,5 +1,7 @@
 package com.linjuli.dao;
 
+import java.util.List;
+
 import com.linjuli.model.web.Baoxiu;
 
 /**
@@ -21,4 +23,5 @@ public interface BaoxiuDao {
 	 * @param baoxiu
 	 */
 	void deleteBaoxiu(Baoxiu baoxiu);
+	List<Baoxiu> findBaoxiuByUid(int uid);
 }

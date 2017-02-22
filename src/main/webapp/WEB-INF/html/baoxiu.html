@@ -2,7 +2,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>报修</title>
+<link href="../../styles/baoxiu.css"  rel="stylesheet"></link>
 <script type="text/javascript" src="../../scripts/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="../../scripts/jweixin-1.0.0.js"></script>
 <script type="text/javascript" src="../../scripts/const.js"></script>
@@ -28,20 +30,20 @@
 			<option value="3">单元1<option/>
 		</select><br/>
 		房间号<input type="text" name="room" id="room"/><br/>
-		<input type="button" name="image" id="image" value="上传图片"><br/>
-		<input type="image"  name="image0" id="image0" >
-		<input type="text" name="image0Txt" id="image0Txt">
-		<input type="image"  name="image1" id="image1" >
-		<input type="text" name="image1Txt" id="image1Txt">
-		<input type="image"  name="image2" id="image2" ><br/>
-		<input type="text" name="image2Txt" id="image2Txt">
 		问题描述<textarea rows="1" cols="5" name="content" id="content"></textarea><br/>
 		报修类别<select id="istype" name="istype">
 			<option value=1>类别1</option>
 		</select><br/>
+		<input type="text" name="imageTxt0" id="imageTxt0" style="display:none">
+		<input type="button" name="image" id="image" value="上传图片"><br/>
 		手机号<input type="tel" name="tel" id="tel"/><input type="button" value="免费获取验证码" id="sendTel"/><br/>
 		验证码<input type="text" name="checkCode" id="checkCode"><br/>
 		<input type="submit" value="提交">
 	</form>
+		<div>
+			<input class="uploadImg" type="image"  name="image0" id="image0" >
+			<input class="uploadImg" type="image"  name="image1" id="image1" >
+			<input class="uploadImg" type="image"  name="image2" id="image2" ><br/>
+		</div>
 </body>
 </html>

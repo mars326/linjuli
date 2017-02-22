@@ -65,9 +65,10 @@ public class HttpDownloadUtil {
 
 	public static void main(String[] args) {  
 		try{  
-			String url="https://qyapi.weixin.qq.com/cgi-bin/media/get?access_token="+"TyGNf9sfkS98R_zYCNnoolxjKtkh6-K-kueUuVaPazqnMMinQ3dKpQ6WE2N35htvEG9q2SK2Ss1sGecJrngVuma3zlDsd3W95VtIRyUPgT7i2VPN_t5nJraIus7DILBvMKNjABASQT"+"&media_id="+"1237378768e7q8e7r8qwesafdasdfasdfaxss111";
+			String url="http://file.api.weixin.qq.com/cgi-bin/media/get?access_token=TcmnMovLYsnB2mSYu-MTUn61qMyxXX4nhNMmXqNJ7G9mLt02RYq4Z4lEGYpbpThvWA7Bgsdynikjx7fE5W5T1xeRMAeXyoBJkftMkVacLQwZIRdACAKTC&media_id=4pK0SzTLqgg8ew5jNYutmpFzPgTWfEqkwoxlQULW8TLzTrg8T2mXyl6WbGahX_bg";
 			String fileName = System.currentTimeMillis()+".jpg";
-			downLoadFromUrl(url,fileName,"d:/");  
+			System.out.println(fileName);
+			downLoadFromUrl(url,fileName,"d:/uploads");  
 		}catch (Exception e) {  
 			e.printStackTrace();  
 		}  

@@ -57,4 +57,12 @@
 	 	SET
 	 		isdel = #{isdel}
 	 </update>
+	 <select id="findBaoxiuByUid" parameterType="int" resultType="com.linjuli.model.web.Baoxiu">
+	 	SELECT
+	 		*
+	 	FROM
+	 		wechat_baoxiu
+	 	WHERE
+	 		uid = #{uid}
+	 </select>
 </mapper>

@@ -3,14 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="scripts/jquery-3.1.1.min.js"></script>
-<script type="text/javascript" src="scripts/const.js"></script>
-<script type="text/javascript" src="scripts/index.js"></script>
+<script type="text/javascript" src="./scripts/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="./scripts/const.js"></script>
+<script type="text/javascript" src="./scripts/index.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var url = "test.do";
+		var data = null;
+		$.getJSON(function(result){
+			if(result.state == SUCCESS){
+				var listBaoxiu = result.data;
+				var baoxiu = listBaoxiu[0];
+				var imgSrc = baoxiu.picurl.split('#')[0];
+				alert(listBaoxiu);
+				alert(baoxiu);
+				alert(imgSrc);
+				$('#image0').attr("src",imgSrc)
+			}
+		});
+	})
+</script>
 </head>
 <body>
 	<div style="width: 100%">
 		<p>Hello World!</p>
 		<a id="baoxiu" href="http://linjuli.applinzi.com/baoxiu/check.do">报修</a>
+		<image id="image" >
 	</div>
 </body>
 </html>

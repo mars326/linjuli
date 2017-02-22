@@ -13,6 +13,7 @@ import com.linjuli.dao.BaoxiuDao;
 import com.linjuli.dao.UserDao;
 import com.linjuli.model.web.Baoxiu;
 import com.linjuli.model.web.User;
+import com.linjuli.service.BaoxiuService;
 import com.linjuli.util.CommonUtil;
 
 
@@ -28,10 +29,11 @@ public class TestCase {
 	 */
 	@Test
 	public void url(){
-  	  String REDIRECT_URI = CommonUtil.urlEncodeUTF8("http://linjuli.applinzi.com/baoxiu/check.do");
+	   	  //跳转链接
+  	  String REDIRECT_URI = CommonUtil.urlEncodeUTF8("http://115.159.124.194:80/linjuli/baoxiu/check.do");
   	  //scope=snsapi_base静默授权 snsapi_userinfo网页授权
   	  System.out.println("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+CommonUtil.appID+"&redirect_uri="+REDIRECT_URI+"&response_type=code&scope=snsapi_base&state=1#wechat_redirect");
-  	 }
+  	  }
 	
 	/**
 	 * 数据库时间格式为long值去掉最后三位
@@ -54,6 +56,32 @@ public class TestCase {
 		System.out.println(user.getId());
 	}
 	
+	/**
+	 * 测试报修的Dao层
+	 */
+	@Test
+	public void baoxiuDao(){
+		BaoxiuDao baoxiuDao = ctx.getBean("baoxiuDao",BaoxiuDao.class);
+		baoxiuDao.createBaoxiu(new Baoxiu(1, 0, 0, 0, 0, null, 0, null, null, null, null, 0, 0, 0, 0, 0));
+	}
+	@Test
+	public void baoxiuDao2(){
+		BaoxiuDao baoxiuDao = ctx.getBean("baoxiuDao",BaoxiuDao.class);
+		System.out.println(baoxiuDao.findBaoxiuByUid(3553));
+		System.out.println(baoxiuDao.findBaoxiuByUid(3553).getClass());
+		System.out.println(baoxiuDao.findBaoxiuByUid(42));
+		System.out.println(baoxiuDao.findBaoxiuByUid(42).getClass());
+	}
+	
+	/**
+	 * 测试报修的service层
+	 */
+	@Test
+	public void baoxiuService(){
+		BaoxiuService baoxiuService = ctx.getBean("baoxiuService",BaoxiuService.class);
+		System.out.println(baoxiuService.findBaoxiuByUid(3553));
+		System.out.println(baoxiuService.findBaoxiuByUid(42));
+	}
 	@Test
 	public void test1(){
 		System.out.println("".equals(""));
@@ -79,16 +107,7 @@ public class TestCase {
 				openid = cookie.getValue();
 				System.out.println(openid);
 			}
-
-		}
-	}
 	
-	/**
-	 * 测试报修的Dao层
-	 */
-	@Test
-	public void baoxiuDao(){
-		BaoxiuDao baoxiuDao = ctx.getBean("baoxiuDao",BaoxiuDao.class);
-		baoxiuDao.createBaoxiu(new Baoxiu(1, 0, 0, 0, 0, null, 0, null, null, null, null, 0, 0, 0, 0, 0));
+		}
 	}
 }

@@ -6,7 +6,6 @@ $(function(){
 	}
 	$.getJSON(url,data,function(result){
 		if(result.state==SUCCESS){
-			alert(1);
 			var config = result.data;
 			wx.config({
 				debug: true, 
@@ -17,7 +16,7 @@ $(function(){
 				jsApiList: ['chooseImage', 'uploadImage', 'downloadImage'] 
 			});
 		}else{
-			alert(2);
+			alert("js接口配置失败,请重新进入本页面");
 		}
 	})
 })
@@ -28,7 +27,7 @@ wx.ready(function(){
     // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
 });
 wx.error(function(res){
-	alert(res);
+	//alert(res);
     // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
 
 });
@@ -43,9 +42,7 @@ function wxChooseImage() {
 			var localIds = data.localIds;  // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片   
 			for(i=0;i<localIds.length;i++){
 				var localId = localIds[i];
-				var mediaId = wxuploadImage(localId);
-				
-				$('#image'+i+'Txt').val(mediaId.toString);
+				wxuploadImage(localId);
 				$('#image'+i).attr("src",localId);
 			}
 		},  
@@ -61,7 +58,12 @@ function wxuploadImage(e) {
 		isShowProgressTips: 1, // 默认为1，显示进度提示  
 		success: function (res) {  
 			var mediaId = res.serverId; // 返回图片的服务器端ID
-			return mediaId;
+			alert(mediaId);
+			if($('#imageTxt0').val() == null){
+				$('#imageTxt0').val(mediaId);
+			}else{
+				$('#imageTxt0').val($('#imageTxt0').val()+'#'+mediaId);
+			}
 		},  
 		fail: function (error) {  
 			picPath = '';  

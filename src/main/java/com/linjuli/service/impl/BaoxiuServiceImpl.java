@@ -1,6 +1,7 @@
 package com.linjuli.service.impl;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -60,8 +61,8 @@ public class BaoxiuServiceImpl implements BaoxiuService{
 		int level=0;
 		String content = NullCheckUtil.check(req, "content");
 		String relcontent = null;
-		String media_id = req.getParameter("imageTxt0")+"#"+req.getParameter("imageTxt1")+"#"+req.getParameter("imageTxt2");
-		System.out.println("media_id:");
+		String media_id = req.getParameter("imageTxt0");
+		System.out.println("media_id:"+media_id);
 		String picurl = getPicurl(media_id);
 
 		int addtime = (int)(System.currentTimeMillis()/1000);
@@ -83,26 +84,27 @@ public class BaoxiuServiceImpl implements BaoxiuService{
 		if(media_id!=null){
 			mediaIds = media_id.split("#");
 		}
-		if(mediaIds != null){
-			//获取下载地址,并下载到uploads文件夹中
-			for(String mediaId:mediaIds){
-				if(mediaId == null || mediaId == ""){
-					continue;
-				}
-				String url="https://qyapi.weixin.qq.com/cgi-bin/media/get?access_token="+TokenThread.accessToken.getAccessToken()+"&media_id="+mediaId;
-				String fileName = System.currentTimeMillis()+".jpg";
-				String savePath = "/uploads/";
-				//保存图片路径到数据库
-				if(picurl==null){
-					picurl=savePath + fileName;
-				}else{
-					picurl = picurl+"#"+ savePath + fileName;
-				}
-				try {
-					HttpDownloadUtil.downLoadFromUrl(url, fileName, savePath);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+		if(mediaIds == null){
+			return picurl;
+		}
+		//获取下载地址,并下载到uploads文件夹中
+		for(String mediaId:mediaIds){
+			if(mediaId == null || mediaId == "" || mediaId.length()<5){
+				continue;
+			}
+			String url="http://file.api.weixin.qq.com/cgi-bin/media/get?access_token="+TokenThread.accessToken.getAccessToken()+"&media_id="+mediaId;
+			String fileName = System.currentTimeMillis()+".jpg";
+			String savePath = "uploads/";
+			//保存图片路径到数据库
+			if(picurl==null){
+				picurl=savePath + fileName;
+			}else{
+				picurl = picurl+"#"+ savePath + fileName;
+			}
+			try {
+				HttpDownloadUtil.downLoadFromUrl(url, fileName, savePath);
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 		}
 		return picurl;
@@ -117,6 +119,12 @@ public class BaoxiuServiceImpl implements BaoxiuService{
 	public void deleteBaodiu(HttpServletRequest req) {
 		// TODO Auto-generated method stub
 
+	}
+
+
+	public List<Baoxiu> findBaoxiuByUid(int uid) {
+		List<Baoxiu> baoxiuInfo = baoxiuDao.findBaoxiuByUid(uid);
+		return baoxiuInfo;
 	}
 
 

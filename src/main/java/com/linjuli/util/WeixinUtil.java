@@ -268,12 +268,12 @@ public class WeixinUtil {
 	 * @throws 说明发生此异常的条件
 	 */
 	public static JsConfig getWxConfig(HttpServletRequest request) {
-
+		
 		String appId = CommonUtil.appID; // 必填，公众号的唯一标识
 		//String secret = CommonUtil.appsecret;
 
 		String requestUrl = request.getParameter("url");
-		System.out.println(requestUrl);
+		log.info(requestUrl);
 		//要注意，access_token需要缓存
 		//String access_token = TokenThread.accessToken.getAccessToken();
 		String jsapi_ticket = TokenThread.jsapi_ticket;
