@@ -29,7 +29,7 @@ public class TestCase {
 	 */
 	@Test
 	public void url(){
-	   	  //跳转链接
+	  //跳转链接
   	  String REDIRECT_URI = CommonUtil.urlEncodeUTF8("http://115.159.124.194:80/linjuli/baoxiu/check.do");
   	  //scope=snsapi_base静默授权 snsapi_userinfo网页授权
   	  System.out.println("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+CommonUtil.appID+"&redirect_uri="+REDIRECT_URI+"&response_type=code&scope=snsapi_base&state=1#wechat_redirect");

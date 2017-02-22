@@ -10,6 +10,7 @@ import com.linjuli.model.weixin.menu.ComplexButton;
 import com.linjuli.model.weixin.menu.Menu;
 import com.linjuli.thread.TokenThread;
 import com.linjuli.util.CommonUtil;
+import com.linjuli.util.JsonResult;
 import com.linjuli.util.WeixinUtil;
 
 /**
@@ -25,7 +26,7 @@ public class MenuController {
     private static Logger log = LoggerFactory.getLogger(MenuController.class);
     
     @RequestMapping("/updateMenu.do")
-    public void updateMenu(){
+    public JsonResult updateMenu(){
 
         // 调用接口获取access_token
         String token = TokenThread.accessToken.getAccessToken();
@@ -35,11 +36,15 @@ public class MenuController {
             int result = WeixinUtil.createMenu(getMenu(), token);
 
             // 判断菜单创建结果
-            if (0 == result)
+            if (0 == result){
                 log.info("菜单创建成功！");
-            else
+                return new JsonResult("菜单创建成功！");
+            }else{
                 log.info("菜单创建失败，错误码：" + result);
+                return new JsonResult("菜单创建失败，错误码：" + result);
+            }
         }
+		return null;
     }
 
     /**
@@ -72,14 +77,19 @@ public class MenuController {
     	  btn11.setName("报修");
     	  btn11.setType("view");
     	  //跳转链接
-    	  String REDIRECT_URI = CommonUtil.urlEncodeUTF8("http://115.159.124.194:80/linjuli/baoxiu/check.do");
+    	  String REDIRECT_URI = CommonUtil.urlEncodeUTF8("http://www.linjuli.xyz/baoxiu/check.do");
     	  //scope=snsapi_base静默授权 snsapi_userinfo网页授权
     	  btn11.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+CommonUtil.appID+"&redirect_uri="+REDIRECT_URI+"&response_type=code&scope=snsapi_base&state=1#wechat_redirect");
     	  
 		  CommonButton btn00 = new CommonButton();
-		  btn00.setName("TEST0220");
+		  btn00.setName("TEST0222");
 		  btn00.setType("click");
 		  btn00.setKey("00");
+		  
+		  CommonButton btn33 = new CommonButton();
+		  btn33.setName("updateMenu");
+		  btn33.setType("view");
+		  btn33.setUrl("http://www.linjuli.xyz/updateMenu.do");
     	 /**
          * 微信：  mainBtn1,mainBtn2,mainBtn3底部的三个一级菜单。
          */
@@ -96,7 +106,7 @@ public class MenuController {
     	  mainBtn2.setSub_button(new CommonButton[]{btn00});
     	  ComplexButton mainBtn3 = new ComplexButton();
     	  mainBtn3.setName("待定");
-    	  mainBtn3.setSub_button(new CommonButton[]{btn00});
+    	  mainBtn3.setSub_button(new CommonButton[]{btn33});
    
         /**
          * 封装整个菜单
